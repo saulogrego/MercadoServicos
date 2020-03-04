@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/Dropbox/Saulo/Aulas/Tópicos%20Especiais%20I/Material/Projetos%202020/MercadoServicos/src/java/br/com/mercadoservicos/utill/HibernateUtil.java</file>
+            <file>file:/D:/Dropbox/Saulo/Aulas/Tópicos%20Especiais%20I/Material/Projetos%202020/MercadoServicos/src/java/br/com/mercadoservicos/domain/Categoria.java</file>
+            <file>file:/D:/Dropbox/Saulo/Aulas/Tópicos%20Especiais%20I/Material/Projetos%202020/MercadoServicos/src/java/br/com/mercadoservicos/dao/CategoriaDao.java</file>
+            <file>file:/D:/Dropbox/Saulo/Aulas/Tópicos%20Especiais%20I/Material/Projetos%202020/MercadoServicos/src/java/hibernate.cfg.xml</file>
+        </group>
+    </open-files>
 </project-private>
