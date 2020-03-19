@@ -10,8 +10,7 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class CategoriaController {
     
-    private Integer id;
-    private String descricao;
+    private Categoria categoria = new Categoria();
     private List<Categoria> categorias;
     private CategoriaService categoriaService = new CategoriaService();
     
@@ -24,27 +23,16 @@ public class CategoriaController {
     }
     
     public String novo(){
-        return "private/cadastros/categoria/new.xhtml?faces-redirect=true";
+        return "new.xhtml?faces-redirect=true";
     }
     
     public String cancelar(){
-        return "private/cadastros/categoria/list.xhtml?faces-redirect=true";
+        return "list.xhtml?faces-redirect=true";
     }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    
+    public String salvar(){
+        categoriaService.inserir(categoria);
+        return "list.xhtml?faces-redirect=true";
     }
 
     public List<Categoria> getCategorias() {
@@ -54,7 +42,12 @@ public class CategoriaController {
     public void setCategorias(List<Categoria> categorias) {
         this.categorias = categorias;
     }
-    
-    
-    
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }    
 }

@@ -7,14 +7,22 @@
         <title>Mercado de Serviços</title>
     </h:head>
     <h:body>
-        <h1>Categorias</h1>
-        <p:dataTable value="#{categoriaMB.categorias}" var="categoria"
-                     emptyMessage="Nenhum registro encontrado">
-            <p:column headerText="Descrição">
-                #{categoria.descricao}
-            </p:column>
-        </p:dataTable>
-        <p:commandButton value="Novo" action="#{categoriaMB.novo()}"/>
+        <h:form>
+            <h1>Categorias</h1>
+            <p:dataTable value="#{categoriaMB.categorias}" var="categoria"
+                         emptyMessage="Nenhum registro encontrado">
+                <p:column headerText="Descrição">
+                    #{categoria.descricao}
+                </p:column>
+                <p:column headerText="Editar" width="80">
+                    <p:commandLink value="Editar"/>
+                </p:column>
+                <p:column headerText="Excluir" width="80">
+                    <p:commandLink value="Excluir"/>
+                </p:column>
+            </p:dataTable>
+            <p:commandButton id="novo" value="Novo" action="#{categoriaMB.novo()}"/>
+        </h:form>
     </h:body>
 </html>
 

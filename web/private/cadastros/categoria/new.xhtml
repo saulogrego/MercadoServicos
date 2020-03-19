@@ -8,7 +8,10 @@
     </h:head>
     <h:body>
         <h:form>
-            <p:inputText value="Limpeza"/>
+            <label>Descrição:</label>
+            <p:inputText value="#{categoriaMB.categoria.descricao}"/>
+            <p:commandButton action="#{categoriaMB.salvar()}" value="Salvar"/>
+            <p:commandButton action="#{categoriaMB.cancelar()}" value="Cancelar" immediate="true"/>
         </h:form>
     </h:body>
 </html>
