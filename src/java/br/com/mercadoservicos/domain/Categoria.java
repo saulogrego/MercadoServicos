@@ -20,7 +20,6 @@ public class Categoria implements Serializable{
     private Integer id;
     
     @NotNull
-    @Size(min=1,max=45)
     @Column(name="descricao")
     private String descricao;
     
