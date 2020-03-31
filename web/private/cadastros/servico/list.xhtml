@@ -5,23 +5,29 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <ui:composition template="/private/template/template.xhtml">
         <ui:define name="conteudo">
-            <p:panel id="panel" header="Categorias" style="margin: 20px;">
-                <p:dataTable value="#{categoriaMB.categorias}" var="categoria"
+            <p:panel id="panel" header="Serviços" style="margin: 20px;">
+                <p:dataTable value="#{servicoMB.servicos}" var="servico"
                              emptyMessage="Nenhum registro encontrado" style="margin: 10px;"
                              paginator="true" paginatorPosition="bottom" rows="10">
-                    <p:column headerText="Descrição" sortBy="#{categoria.descricao}">
-                        #{categoria.descricao}
+                    <p:column headerText="Descrição" sortBy="#{servico.descricao}">
+                        #{servico.descricao}
+                    </p:column>
+                    <p:column headerText="Preço" sortBy="#{servico.preco}">
+                        #{servico.preco}
+                    </p:column>
+                    <p:column headerText="Categoria" sortBy="#{servico.categoria.descricao}">
+                        #{servico.categoria.descricao}
                     </p:column>
                     <p:column headerText="Editar" width="80" style="text-align: center;">
-                        <p:commandButton action="#{categoriaMB.buscaDados(categoria)}" icon="ui-icon-pencil" title="Editar"/>
+                        <p:commandButton action="#{servicoMB.buscaDados(servico)}" icon="ui-icon-pencil" title="Editar"/>
                     </p:column>
                     <p:column headerText="Excluir" width="80" style="text-align: center;">
-                        <p:commandButton action="#{categoriaMB.excluir(categoria)}" icon="ui-icon-trash" title="Excluir"
+                        <p:commandButton action="#{servicoMB.excluir(servico)}" icon="ui-icon-trash" title="Excluir"
                                        onclick="if (!confirm('Confirma a exclusão?')) return false"/>
                     </p:column>
                 </p:dataTable>
                 <div align="center">
-                    <p:commandButton id="novo" value="Novo" action="#{categoriaMB.novo()}"/>
+                    <p:commandButton id="novo" value="Novo" action="#{servicoMB.novo()}"/>
                 </div>
             </p:panel>
         </ui:define>

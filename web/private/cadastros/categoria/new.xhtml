@@ -5,10 +5,21 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <ui:composition template="/private/template/template.xhtml">
         <ui:define name="conteudo">
-            <label>Descrição:</label>
-            <p:inputText id="descricao" value="#{categoriaMB.categoria.descricao}" required="true" requiredMessage="Descrição é obrigatória!"/>
-            <p:commandButton action="#{categoriaMB.salvar()}" value="Salvar" update="growl"/>
-            <p:commandButton action="#{categoriaMB.cancelar()}" value="Cancelar" immediate="true"/>
+            <p:panel id="panel" header="Categorias" style="margin: 20px;">
+                <div class="ui-g">
+                    <div class="ui-g-12">
+                        <label>Descrição</label><br/>
+                        <p:inputText id="descricao" value="#{categoriaMB.categoria.descricao}" style="width: 98%;"
+                                     required="true" requiredMessage="Descrição é obrigatória!"/>
+                    </div>
+                </div>
+                <br/>
+                <div align="center">
+                    <p:commandButton action="#{categoriaMB.salvar()}" value="Salvar" update="growl" style="margin-right: 10px;"/>
+                    <p:commandButton action="#{categoriaMB.cancelar()}" value="Cancelar" immediate="true"/>
+                </div>
+                <br/>
+            </p:panel>
         </ui:define>
     </ui:composition>
 </html>
