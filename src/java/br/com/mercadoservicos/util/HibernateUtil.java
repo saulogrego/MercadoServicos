@@ -1,4 +1,4 @@
-package br.com.mercadoservicos.utill;
+package br.com.mercadoservicos.util;
 
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;

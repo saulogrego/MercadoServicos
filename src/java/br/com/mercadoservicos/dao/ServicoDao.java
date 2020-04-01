@@ -1,7 +1,7 @@
 package br.com.mercadoservicos.dao;
 
 import br.com.mercadoservicos.domain.Servico;
-import br.com.mercadoservicos.utill.HibernateUtil;
+import br.com.mercadoservicos.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.Session;
 

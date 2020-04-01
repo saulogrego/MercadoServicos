@@ -1,14 +1,14 @@
 package br.com.mercadoservicos.dao;
 
 import br.com.mercadoservicos.domain.Categoria;
-import br.com.mercadoservicos.utill.HibernateUtil;
+import br.com.mercadoservicos.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.Session;
 
 public class CategoriaDao {
     
     public List<Categoria> listar(){
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         try{
             List<Categoria> categorias = session.createQuery("from Categoria order by descricao").list();

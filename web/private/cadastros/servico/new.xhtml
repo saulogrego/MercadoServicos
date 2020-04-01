@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="/private/template/template.xhtml">
         <ui:define name="conteudo">
             <p:panel id="panel" header="Serviços" style="margin: 20px;">
@@ -19,8 +20,12 @@
                     </div>
                     <div class="ui-g-4">
                         <label>Categoria</label>
-                        <p:inputText id="categoria" value="#{servicoMB.servico.categoria}" style="width: 98%;"
-                                     required="true" requiredMessage="Categoria é obrigatória!"/>
+                        <p:selectOneMenu id="categoria" value="#{servicoMB.servico.categoria}" style="width: 98%"
+                                         required="true" requiredMessage="Categoria é obrigatória"
+                                         converter="entityConverter">
+                            <f:selectItems value="#{categoriaMB.categorias}" var="categoria"
+                                           itemLabel="#{categoria.descricao}" itemValue="#{categoria}"/>
+                        </p:selectOneMenu>
                     </div>
                 </div>
                 <br/>
