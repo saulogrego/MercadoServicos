@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/private/template/template.xhtml">
+        <ui:define name="conteudo">
+            <p:panel id="panel" header="Usuários" style="margin: 20px;">
+                <div class="ui-g">
+                    <div class="ui-g-5">
+                        <label>Nome</label><br/>
+                        <p:inputText id="nome" value="#{usuarioMB.usuario.nome}" style="width: 98%;"
+                                     required="true" requiredMessage="Nome é obrigatório!"/>
+                    </div>
+                    <div class="ui-g-5">
+                        <label>Email</label>
+                        <p:inputText id="email" value="#{usuarioMB.usuario.email}" style="width: 98%"
+                                     required="true" requiredMessage="Email é obrigatório"/>
+                    </div>
+                    <div class="ui-g-2">
+                        <label>Senha</label>
+                        <p:password id="senha" value="#{usuarioMB.usuario.senha}" style="width: 98%"
+                                    required="true" requiredMessage="Senha é obrigatória"/>
+                    </div>
+                </div>
+                <div class="ui-g">
+                    <div class="ui-g-3">
+                        <label>Tipo Pessoa</label>
+                        <p:selectOneRadio id="tipo" value="#{usuarioMB.usuario.tipo}" style="width: 98%">
+                            <f:selectItem itemLabel="Física" itemValue="F"/>
+                            <f:selectItem itemLabel="Jurídica" itemValue="J"/>
+                        </p:selectOneRadio>
+                    </div>
+                    <div class="ui-g-2">
+                        <label>CPF</label>
+                        <p:inputMask id="cpf" value="#{usuarioMB.usuario.cpf}" style="width: 98%" mask="999.999.999-99"/>
+                    </div>
+                    <div class="ui-g-2">
+                        <label>CNPJ</label>
+                        <p:inputMask id="cnpj" value="#{usuarioMB.usuario.cnpj}" style="width: 98%" mask="99.999.999/9999-99"/>
+                    </div>
+                    <div class="ui-g-2">
+                        <label>Data Nascimento</label>
+                        <p:calendar id="dataNascimento" value="#{usuarioMB.usuario.dataNascimento}"
+                    </div>
+                </div>
+                <br/>
+                <div align="center">
+                    <p:commandButton action="#{usuarioMB.salvar()}" value="Salvar" update="growl" style="margin-right: 10px;"/>
+                    <p:commandButton action="#{usuarioMB.cancelar()}" value="Cancelar" immediate="true"/>
+                </div>
+                <br/>
+            </p:panel>
+        </ui:define>
+    </ui:composition>
+</html>
+
