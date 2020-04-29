@@ -1,19 +1,20 @@
 package br.com.mercadoservicos.dao;
 
+import br.com.mercadoservicos.domain.ItensOrdemServico;
 import br.com.mercadoservicos.domain.OrdemServico;
 import br.com.mercadoservicos.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.Session;
 
-public class OrdemServicoDao {
+public class ItensOrdemServicoDao {
     
-    public List<OrdemServico> listar(){
+    public List<ItensOrdemServico> listar(OrdemServico ordemServico){
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         try{
-            List<OrdemServico> ordensServico = session.createQuery("from OrdemServico order by dataHora").list();
+            List<ItensOrdemServico> itensOrdemServico = session.createQuery("from ItensOrdemServico where idOrdemServico = " + ordemServico.getId() + " order by sequencia").list();
             session.getTransaction().commit();
-            return ordensServico;
+            return itensOrdemServico;
         }catch(Exception e){
             e.printStackTrace();
             session.getTransaction().rollback();
@@ -21,39 +22,11 @@ public class OrdemServicoDao {
         }
     }
     
-    public OrdemServico consultar(Integer id){
+    public boolean inserir(ItensOrdemServico itemOrdemServico){
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         try{
-            OrdemServico ordemServico = (OrdemServico)session.createQuery("from OrdemServico where id = " + id).uniqueResult();
-            session.getTransaction().commit();
-            return ordemServico;
-        }catch(Exception e){
-            e.printStackTrace();
-            session.getTransaction().rollback();
-            return null;
-        }
-    }
-    
-    public OrdemServico inserir(OrdemServico ordemServico){
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        try{
-            ordemServico = (OrdemServico)session.save(ordemServico);
-            session.getTransaction().commit();
-            return ordemServico;
-        }catch(Exception e){
-            e.printStackTrace();
-            session.getTransaction().rollback();
-            return null;
-        }
-    }    
-    
-    public boolean alterar(OrdemServico ordemServico){
-        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        try{
-            session.update(ordemServico);
+            session.save(itemOrdemServico);
             session.getTransaction().commit();
             return true;
         }catch(Exception e){
@@ -62,12 +35,26 @@ public class OrdemServicoDao {
             return false;
         }
     }    
-     
-      public boolean excluir(OrdemServico ordemServico){
+    
+    public boolean alterar(ItensOrdemServico itemOrdemServico){
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         try{
-            session.delete(ordemServico);
+            session.update(itemOrdemServico);
+            session.getTransaction().commit();
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+            session.getTransaction().rollback();
+            return false;
+        }
+    }
+     
+    public boolean excluir(ItensOrdemServico itemOrdemServico){
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        try{
+            session.delete(itemOrdemServico);
             session.getTransaction().commit();
             return true;
         }catch(Exception e){
