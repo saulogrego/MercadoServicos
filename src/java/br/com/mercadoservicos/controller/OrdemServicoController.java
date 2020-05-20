@@ -52,8 +52,7 @@ public class OrdemServicoController implements Serializable{
     }
     
     public String salvar(){
-        ordemServico.setItensOs(itensOrdemServico);
-        if (ordemServicoService.inserir(ordemServico)){
+        if (ordemServicoService.inserir(ordemServico, itensOrdemServico)){
             UtilMensagens.mensagemSucesso("Sucesso", "Ordem de Serviço salva com sucesso!");
             this.listar();
             return "list.xhtml?faces-redirect=true";
@@ -89,6 +88,10 @@ public class OrdemServicoController implements Serializable{
     
     public void removeServico(ItensOrdemServico itemOrdemServico){
         itensOrdemServico.remove(itemOrdemServico);
+    }
+   
+    public void calculaTotal(){
+        itemOrdemServico.setPreco(itemOrdemServico.getQuantidade() * itemOrdemServico.getServico().getPreco());
     }
 
     public List<OrdemServico> getOrdemServicos() {
