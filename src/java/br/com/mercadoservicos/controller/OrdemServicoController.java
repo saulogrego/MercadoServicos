@@ -27,6 +27,8 @@ public class OrdemServicoController implements Serializable{
     
     public OrdemServicoController(){
         listar();
+        clientes = usuarioService.listarClientes();
+        empresas = usuarioService.listarEmpresas();
     }
     
     public void listar(){
@@ -47,7 +49,11 @@ public class OrdemServicoController implements Serializable{
     }
     
     public String buscaDados(OrdemServico ordemServico){
+        clientes = usuarioService.listarClientes();
+        empresas = usuarioService.listarEmpresas();
+        itemOrdemServico = new ItensOrdemServico();
         this.ordemServico = ordemServico;
+        this.itensOrdemServico = ordemServicoService.listarItens(ordemServico);
         return "alter.xhtml?faces-redirect=true";
     }
     
@@ -62,7 +68,7 @@ public class OrdemServicoController implements Serializable{
     }
     
     public String alterar(){
-        if (ordemServicoService.alterar(ordemServico)){
+        if (ordemServicoService.alterar(ordemServico, itensOrdemServico)){
             UtilMensagens.mensagemSucesso("Sucesso", "Ordem de Serviço alterada com sucesso!");
             this.listar();
             return "list.xhtml?faces-redirect=true";
@@ -82,8 +88,12 @@ public class OrdemServicoController implements Serializable{
     }
     
     public void addServico(){
-        itensOrdemServico.add(itemOrdemServico);
-        itemOrdemServico = new ItensOrdemServico();
+        if (itemOrdemServico.getServico() == null || itemOrdemServico.getQuantidade() == null){
+            UtilMensagens.mensagemErro("Erro", "Informe o serviço e a quantidade");
+        }else{
+            itensOrdemServico.add(itemOrdemServico);
+            itemOrdemServico = new ItensOrdemServico();
+        }
     }
     
     public void removeServico(ItensOrdemServico itemOrdemServico){

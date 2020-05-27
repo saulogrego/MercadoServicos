@@ -4,6 +4,7 @@ import br.com.mercadoservicos.domain.ItensOrdemServico;
 import br.com.mercadoservicos.domain.OrdemServico;
 import br.com.mercadoservicos.util.HibernateUtil;
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 public class ItensOrdemServicoDao {
@@ -50,11 +51,13 @@ public class ItensOrdemServicoDao {
         }
     }
      
-    public boolean excluir(ItensOrdemServico itemOrdemServico){
+    public boolean excluir(OrdemServico ordemServico){
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         try{
-            session.delete(itemOrdemServico);
+            Query query = session.createQuery("delete ItensOrdemServico where idOrdemServico = :idOS");
+            query.setParameter("idOS", ordemServico.getId());
+            query.executeUpdate();
             session.getTransaction().commit();
             return true;
         }catch(Exception e){

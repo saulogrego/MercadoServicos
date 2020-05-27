@@ -37,11 +37,25 @@ public class OrdemServicoService {
         return true;
     }
     
-    public boolean alterar(OrdemServico ordemServico){
+    public boolean alterar(OrdemServico ordemServico, List<ItensOrdemServico> itensOrdemServico){
+        itensOrdemServicoDao.excluir(ordemServico);
+        int cont = 1;
+        for (ItensOrdemServico item : itensOrdemServico){
+            ItensOrdemServicoPk itemPk = new ItensOrdemServicoPk();
+            itemPk.setOrdemServico(ordemServico);
+            itemPk.setSequencia(cont);
+            item.setItensOrdemServicoPk(itemPk);
+            itensOrdemServicoDao.inserir(item);
+            cont++;
+        }
         return ordemServicoDao.alterar(ordemServico);
     }
     
     public boolean excluir(OrdemServico ordemServico){
         return ordemServicoDao.excluir(ordemServico);
+    }
+    
+    public List<ItensOrdemServico> listarItens(OrdemServico ordemServico){
+        return itensOrdemServicoDao.listar(ordemServico);
     }
 }

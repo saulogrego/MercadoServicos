@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="itensos")
@@ -16,17 +15,14 @@ public class ItensOrdemServico implements Serializable{
     
     @EmbeddedId
     private ItensOrdemServicoPk itensOrdemServicoPk = new ItensOrdemServicoPk();
-    
-    @NotNull
+   
     @ManyToOne
     @JoinColumn(name="idServico", referencedColumnName="id")
     private Servico servico;
     
-    @NotNull
     @Column(name="preco")
     private Double preco;
     
-    @NotNull
     @Column(name="quantidade")
     private Double quantidade;
 
